@@ -1,6 +1,4 @@
-FROM mariadb:10.2
-
-VOLUME ["./database/mysql", "/var/lib/mysql"]
+FROM mariadb:latest
 
 # default mysql deploy user information! i recommand do not change
 # linked my laravel .env file!
@@ -15,8 +13,10 @@ ENV MYSQL_DATABASE=PixelDB
 # change this password difiicult password
 ENV MYSQL_ROOT_PASSWORD=secret
 
+# Define working directory.
 WORKDIR /data
 
-CMD ["mysqld_safe"]
+# Define default command.
 
+# Expose ports.
 EXPOSE 3306

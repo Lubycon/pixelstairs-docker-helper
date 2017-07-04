@@ -24,3 +24,5 @@ services:
             context: mariadb
         ports:
             - "33061:3306"
+        volumes:
+            - ./mariadb/database:/var/lib
