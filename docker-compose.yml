@@ -6,7 +6,7 @@ services:
         ports:
             - "8080:80"
         volumes:
-            - ../api:/var/www
+            - ../:/var/www
         links:
             - php
     php:
