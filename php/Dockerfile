@@ -11,6 +11,7 @@ ENV LC_ALL en_US.UTF-8
 RUN apt-get -y upgrade && apt-get update --fix-missing
 
 RUN apt-get -y install \
+        vim \
         php7.0-fpm \
         php7.0-dev \
         mcrypt \
@@ -27,7 +28,7 @@ RUN apt-get -y install \
 
 RUN sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.0/fpm/php.ini && \
     sed -i "s/upload_max_filesize = .*/upload_max_filesize = 10M/" /etc/php/7.0/fpm/php.ini && \
-    sed -i "s/post_max_size = .*/post_max_size = 12M/" /etc/php/7.0/fpm/php.ini && \
+    sed -i "s/post_max_size = .*/post_max_size = 20M/" /etc/php/7.0/fpm/php.ini && \
     sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/pid =.*/pid = \/var\/run\/php7.0-fpm.pid/" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i -e "s/error_log =.*/error_log = \/proc\/self\/fd\/2/" /etc/php/7.0/fpm/php-fpm.conf && \
