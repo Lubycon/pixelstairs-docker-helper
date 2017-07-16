@@ -3,26 +3,10 @@ services:
     nginx:
         build:
             context: nginx
-        ports:
-            - "8080:80"
-        volumes:
-            - ../:/var/www
         links:
             - php
     php:
         build:
             context: php
-        volumes:
-            - ../api:/var/www
-        environment:
-            - "DB_PORT=3306"
-            - "DB_HOST=database"
-        links:
-            - database
-    database:
-        build:
-            context: mariadb
         ports:
-            - "33061:3306"
-        volumes:
-            - ./mariadb/database:/var/lib
+            - "587:587" # SMTP

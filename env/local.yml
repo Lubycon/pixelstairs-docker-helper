@@ -1,0 +1,25 @@
+version: '2'
+services:
+    nginx:
+        ports:
+            - "8080:80"
+        volumes:
+            - "../api:/var/www"
+        restart: always
+    php:
+        volumes:
+            - "../api:/var/www"
+        environment:
+            - "DB_PORT=3306"
+            - "DB_HOST=database"
+        links:
+            - database
+        restart: always
+    database:
+        build:
+            context: mariadb
+        ports:
+            - "33061:3306"
+        volumes:
+            - ./mariadb/database:/var/lib
+        restart: always

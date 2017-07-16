@@ -1,0 +1,15 @@
+version: '2'
+services:
+    nginx:
+        ports:
+            - "80:80"
+        volumes:
+            - "../www:/var/www"
+        restart: always
+    php:
+        volumes:
+            - "../www:/var/www"
+        environment:
+            - "DB_PORT=3306"
+            - "DB_HOST=rds.pixelstairs.com"
+        restart: always

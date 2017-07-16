@@ -12,12 +12,13 @@ RUN apt-get -y upgrade && apt-get update --fix-missing
 
 RUN apt-get -y install \
         vim \
+        htop \
+        mcrypt \
+        composer \
         php7.0-fpm \
         php7.0-dev \
-        mcrypt \
         php7.0-mcrypt \
         php7.0-mbstring \
-        composer \
         php7.0-gd \
         php7.0-pdo \
         php7.0-mysqlnd \
@@ -26,15 +27,14 @@ RUN apt-get -y install \
         php7.0-tokenizer \
         php7.0-iconv
 
-RUN sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.0/fpm/php.ini && \
-    sed -i "s/upload_max_filesize = .*/upload_max_filesize = 10M/" /etc/php/7.0/fpm/php.ini && \
-    sed -i "s/post_max_size = .*/post_max_size = 20M/" /etc/php/7.0/fpm/php.ini && \
-    sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini && \
-    sed -i -e "s/pid =.*/pid = \/var\/run\/php7.0-fpm.pid/" /etc/php/7.0/fpm/php-fpm.conf && \
+RUN sed -i -e "s/pid =.*/pid = \/var\/run\/php7.0-fpm.pid/" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i -e "s/error_log =.*/error_log = \/proc\/self\/fd\/2/" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.0/fpm/php-fpm.conf && \
+
     sed -i "s/listen = .*/listen = 9000/" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i "s/;catch_workers_output = .*/catch_workers_output = yes/" /etc/php/7.0/fpm/pool.d/www.conf
+
+COPY php.ini /etc/php/7.0/fpm/php.ini
 
 WORKDIR /var/www
 
