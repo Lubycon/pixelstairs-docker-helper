@@ -12,6 +12,7 @@ RUN apt-get -y upgrade && apt-get update --fix-missing
 
 RUN apt-get -y install \
         vim \
+        git-flow \
         htop \
         mcrypt \
         composer \
