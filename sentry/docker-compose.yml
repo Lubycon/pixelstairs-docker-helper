@@ -1,0 +1,66 @@
+# Change SENTRY_SECRET_KEY to random 32 char string
+# Run docker-compose up -d
+# Run docker exec -it sentry_sentry_1 sentry upgrade // to setup database and create admin user
+# Run docker exec -it sentry_sentry_1 pip install sentry-slack // if you want slack plugin, it can be done later
+# Run docker restart sentry_sentry_1
+# Sentry is now running on public port 9000
+
+version: '2'
+
+volumes:
+   pgdb:
+
+services:
+  redis:
+    image: redis
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: sentry
+      POSTGRES_PASSWORD: sentry
+      POSTGRES_DBNAME: sentry
+      POSTGRES_DBUSER: sentry
+      POSTGRES_DBPASS: sentry
+    volumes:
+     - pgdb:/var/lib/postgresql/data
+
+  sentry:
+    image: sentry
+    links:
+     - redis
+     - postgres
+    ports:
+     - 9000:9000
+    environment:
+      SENTRY_SECRET_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: sentry
+      SENTRY_REDIS_HOST: redis
+
+  cron:
+    image: sentry
+    links:
+     - redis
+     - postgres
+    command: "sentry run cron"
+    environment:
+      SENTRY_SECRET_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: sentry
+      SENTRY_REDIS_HOST: redis
+
+  worker:
+    image: sentry
+    links:
+     - redis
+     - postgres
+    command: "sentry run worker"
+    environment:
+      SENTRY_SECRET_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: sentry
+      SENTRY_REDIS_HOST: redis
