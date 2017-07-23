@@ -24,6 +24,7 @@ services:
       POSTGRES_DBPASS: sentry
     volumes:
      - pgdb:/var/lib/postgresql/data
+    restart: always
 
   sentry:
     image: sentry
@@ -38,6 +39,7 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
+     restart: always
 
   cron:
     image: sentry
@@ -51,6 +53,7 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
+     restart: always
 
   worker:
     image: sentry
@@ -64,3 +67,4 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
+     restart: always
