@@ -16,6 +16,7 @@ RUN apt-get -y install \
         htop \
         mcrypt \
         composer \
+        cron \
         php7.0-fpm \
         php7.0-dev \
         php7.0-mcrypt \
@@ -36,6 +37,9 @@ RUN sed -i -e "s/pid =.*/pid = \/var\/run\/php7.0-fpm.pid/" /etc/php/7.0/fpm/php
     sed -i "s/;catch_workers_output = .*/catch_workers_output = yes/" /etc/php/7.0/fpm/pool.d/www.conf
 
 COPY php.ini /etc/php/7.0/fpm/php.ini
+
+COPY crontab-setting /crontab-setting
+RUN crontab /crontab-setting
 
 WORKDIR /var/www
 
