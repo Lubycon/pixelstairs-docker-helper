@@ -6,6 +6,7 @@ services:
         volumes:
             - "../www:/var/www"
         restart: always
+        hostname: dev-nginx
     php:
         volumes:
             - "../www:/var/www"
@@ -13,3 +14,4 @@ services:
             - "DB_PORT=3306"
             - "DB_HOST=rdsdev.pixelstairs.com"
         restart: always
+        hostname: dev-php
