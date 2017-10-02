@@ -15,6 +15,5 @@ if [ -f "$artisanFile" ];then
 else
 	echo "$artisanFile not found."
 fi
-cron -f
 service cron start
 php-fpm7.0
