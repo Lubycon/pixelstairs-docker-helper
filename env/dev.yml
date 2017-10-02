@@ -7,6 +7,8 @@ services:
             - "../www:/var/www"
         restart: always
         hostname: dev-nginx
+        links:
+            - php
     php:
         domainname: dev.api.pixelstairs.com
         volumes:
@@ -14,7 +16,7 @@ services:
         working_dir: /var/www
         environment:
             - "DB_PORT=3306"
-            - "DB_HOST=rdsdev.pixelstairs.com"
+            - "DB_HOST=dev.rds.pixelstairs.com"
         restart: always
         hostname: dev-php
         command: sh /var/entrypoint/api-dev.sh

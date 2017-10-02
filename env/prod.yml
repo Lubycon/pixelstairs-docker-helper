@@ -7,6 +7,8 @@ services:
             - "../www:/var/www"
         restart: always
         hostname: prod-nginx
+        links:
+            - php
     php:
         domainname: api.pixelstairs.com
         volumes:

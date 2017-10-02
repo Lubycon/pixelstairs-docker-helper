@@ -7,6 +7,8 @@ services:
             - "../api:/var/www"
         restart: always
         hostname: local-nginx
+        links:
+            - php
     php:
         domainname: local.api.pixelstairs.com
         volumes:
