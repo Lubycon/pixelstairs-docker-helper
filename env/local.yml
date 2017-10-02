@@ -2,7 +2,7 @@ version: '2'
 services:
     nginx:
         ports:
-            - "8080:80"
+            - "80:80"
         volumes:
             - "../api:/var/www"
         restart: always
