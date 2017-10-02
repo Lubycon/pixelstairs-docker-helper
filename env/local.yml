@@ -8,8 +8,10 @@ services:
         restart: always
         hostname: local-nginx
     php:
+        domainname: local.api.pixelstairs.com
         volumes:
             - "../api:/var/www"
+        working_dir: /var/www
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"
@@ -19,6 +21,7 @@ services:
             - "2525:2525" # SMTP - mailtrap
         restart: always
         hostname: local-php
+        command: sh /var/entrypoint/api-local.sh
     database:
         build:
             context: mariadb

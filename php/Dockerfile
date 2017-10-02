@@ -41,7 +41,7 @@ COPY php.ini /etc/php/7.0/fpm/php.ini
 COPY crontab-setting /crontab-setting
 RUN crontab /crontab-setting
 
-WORKDIR /var/www
+COPY entrypoint/ /var/entrypoint/
+RUN chmod +x /var/entrypoint/*
 
 EXPOSE 9000
-CMD ["php-fpm7.0"]

@@ -8,10 +8,13 @@ services:
         restart: always
         hostname: prod-nginx
     php:
+        domainname: api.pixelstairs.com
         volumes:
-            - "../www:/var/www"
+            - "../api:/var/www"
+        working_dir: /var/www
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=rds.pixelstairs.com"
         restart: always
-        hostname: prod-php
+        hostname: dev-php
+        command: sh /var/entrypoint/api-prod.sh
