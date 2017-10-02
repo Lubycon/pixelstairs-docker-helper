@@ -10,11 +10,11 @@ services:
     php:
         domainname: api.pixelstairs.com
         volumes:
-            - "../api:/var/www"
+            - "../www:/var/www"
         working_dir: /var/www
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=rds.pixelstairs.com"
         restart: always
-        hostname: dev-php
+        hostname: prod-php
         command: sh /var/entrypoint/api-prod.sh
