@@ -10,7 +10,7 @@ services:
     php:
         domainname: dev.api.pixelstairs.com
         volumes:
-            - "../api:/var/www"
+            - "../www:/var/www"
         working_dir: /var/www
         environment:
             - "DB_PORT=3306"
