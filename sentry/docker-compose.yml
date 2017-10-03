@@ -39,7 +39,7 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
-     restart: always
+    restart: always
 
   cron:
     image: sentry
@@ -53,7 +53,7 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
-     restart: always
+    restart: always
 
   worker:
     image: sentry
@@ -67,4 +67,4 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
-     restart: always
+    restart: always
