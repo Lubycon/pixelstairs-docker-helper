@@ -6,8 +6,8 @@ artisanFile="/var/www/artisan"
 if [ -f "$artisanFile" ];then
 	cd $projectDir
 	composer install --prefer-dist
-	chmod -R 775 $projectDir/storage;
-	chmod -R 775 $projectDir/bootstrap/cache;
+	chmod -R 777 $projectDir/storage;
+	chmod -R 777 $projectDir/bootstrap/cache;
 	php artisan ide-helper:generate
 	php artisan ide-helper:meta
 	php artisan migrate

@@ -6,8 +6,8 @@ artisanFile="/var/www/artisan"
 if [ -f "$artisanFile" ];then
 	cd $projectDir
 	composer install --prefer-dist --no-scripts --no-dev
-	chmod -R 775 $projectDir/storage;
-	chmod -R 775 $projectDir/bootstrap/cache;
+	chmod -R 777 $projectDir/storage;
+	chmod -R 777 $projectDir/bootstrap/cache;
 	php artisan migrate
 	echo "[API] Runnning"
 else
