@@ -5,10 +5,12 @@ services:
             - "80:80"
         volumes:
             - "../www:/var/www"
+            - "./nginx/prod-default.conf:/etc/nginx/conf.d/default.conf"
         restart: always
         hostname: prod-nginx
         links:
             - php
+            - sentry
     php:
         domainname: api.pixelstairs.com
         volumes:

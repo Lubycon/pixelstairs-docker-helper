@@ -1,8 +1,8 @@
 # Change SENTRY_SECRET_KEY to random 32 char string
 # Run docker-compose up -d
-# Run docker exec -it sentry_sentry_1 sentry upgrade // to setup database and create admin user
-# Run docker exec -it sentry_sentry_1 pip install sentry-slack // if you want slack plugin, it can be done later
-# Run docker restart sentry_sentry_1
+# Run docker exec -it pxs_sentry_1 sentry upgrade // to setup database and create admin user
+# Run docker exec -it pxs_sentry_1 pip install sentry-slack // if you want slack plugin, it can be done later
+# Run docker restart pxs_sentry_1
 # Sentry is now running on public port 9000
 
 version: '2'
@@ -31,8 +31,6 @@ services:
     links:
      - redis
      - postgres
-    ports:
-     - 9000:9000
     environment:
       SENTRY_SECRET_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
       SENTRY_POSTGRES_HOST: postgres
