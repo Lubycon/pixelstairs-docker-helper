@@ -27,6 +27,9 @@ if [ -f "$artisanFile" ];then
 	chmod -R 777 $projectDir/bootstrap/cache;
 
 	if [ -f "$envFile" ];then
+		echo "[API] .env file exists"
+	else
+		cp .env.example .env
 		php artisan key:generate
 	fi
 
