@@ -20,6 +20,7 @@ services:
             - "DB_HOST=database"
         links:
             - database
+            - redis
         ports:
             - "2525:2525" # SMTP - mailtrap
         restart: always
@@ -34,3 +35,7 @@ services:
             - ./mariadb/database:/var/lib
         restart: always
         hostname: local-database
+    redis:
+        image: redis
+        restart: always
+        hostname: local-redis
