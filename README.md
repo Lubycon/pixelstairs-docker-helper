@@ -23,6 +23,23 @@ COMPOSE_FILE=docker-compose.yml:./env/local.yml
 # COMPOSE_FILE=docker-compose.yml:./env/dev.yml
 # For Production Server
 # COMPOSE_FILE=docker-compose.yml:./env/prod.yml
+
+# Sentry
+# Sentry를 설치하고 싶은 경우 아래 값을 모두 입력하세요.
+SENTRY_SECRET_KEY=
+SENTRY_SERVER_EMAIL=
+SENTRY_EMAIL_HOST=
+SENTRY_EMAIL_PORT=
+SENTRY_EMAIL_USER=
+SENTRY_EMAIL_PASSWORD=
+SENTRY_EMAIL_USE_TLS=
+
+# Bitbucket Credential
+# Bitbucket에서 프로젝트를 가져오는 entrypoint를 가지고있다면 하단 정보를 모두 입력하세요.
+BITBUCKET_TEAM_NAME=lubycon
+BITBUCKET_USERNAME=
+BITBUCKET_PASSWORD=
+
 ```
 
 ### 커맨드 목록

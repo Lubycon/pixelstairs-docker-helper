@@ -24,7 +24,7 @@ services:
             - "2525:2525" # SMTP - mailtrap
         restart: always
         hostname: local-php
-        command: sh /var/entrypoint/api-local.sh
+        command: sh /var/entrypoint/api-local.sh ${BITBUCKET_TEAM_NAME} ${BITBUCKET_USERNAME} ${BITBUCKET_PASSWORD}
     database:
         build:
             context: mariadb
